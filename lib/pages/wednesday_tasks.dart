@@ -5,21 +5,22 @@ import 'package:todo_app/database/database.dart';
 import 'package:todo_app/util/add_task_dialogue_box.dart';
 import 'package:todo_app/util/todo_tile.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class WednesdayTasks extends StatefulWidget {
+  const WednesdayTasks({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<WednesdayTasks> createState() => _WednesdayTasksState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WednesdayTasksState extends State<WednesdayTasks> {
   final _myBox = Hive.box('myBox');
   final _controller = TextEditingController();
   ToDoData db = ToDoData();
-  final String day = "monday";
+  final String day = "wednesday";
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
     if(_myBox.get("TODOLIST") == null){
       db.createInitialData();
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.yellow.shade200,
       appBar: AppBar(
-        title: const Center(child: Text('TO DO FOR MONDAY')),
+        title: const Center(child: Text('TO DO FOR WEDNESDAY')),
         elevation: 0,
       ),
       drawer: Drawer(
@@ -150,6 +151,8 @@ class _HomePageState extends State<HomePage> {
       body: ListView.builder(
         itemCount: db.toDoList[day]!.length,
         itemBuilder: (context, index) {
+          // print(db.toDoList[day]!.length);
+          // print("$index ");
           return ToDoTile(
             taskname: db.toDoList[day]![index][0],
             taskStatus: db.toDoList[day]![index][1], 

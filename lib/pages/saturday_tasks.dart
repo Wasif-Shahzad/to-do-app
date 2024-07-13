@@ -5,21 +5,22 @@ import 'package:todo_app/database/database.dart';
 import 'package:todo_app/util/add_task_dialogue_box.dart';
 import 'package:todo_app/util/todo_tile.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class SaturdayTasks extends StatefulWidget {
+  const SaturdayTasks({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SaturdayTasks> createState() => _SaturdayTasksState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SaturdayTasksState extends State<SaturdayTasks> {
   final _myBox = Hive.box('myBox');
   final _controller = TextEditingController();
   ToDoData db = ToDoData();
-  final String day = "monday";
+  final String day = "saturday";
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
     if(_myBox.get("TODOLIST") == null){
       db.createInitialData();
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.yellow.shade200,
       appBar: AppBar(
-        title: const Center(child: Text('TO DO FOR MONDAY')),
+        title: const Center(child: Text('TO DO FOR SATURDAY')),
         elevation: 0,
       ),
       drawer: Drawer(
