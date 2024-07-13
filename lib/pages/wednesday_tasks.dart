@@ -57,7 +57,10 @@ class _WednesdayTasksState extends State<WednesdayTasks> {
         return DialogueBox(
           controller: _controller,
           onSave: saveNewTask,
-          onCancel: () => Navigator.of(context).pop(),
+          onCancel: () {
+            _controller.clear();
+            Navigator.of(context).pop();
+          }
         );
       },
     );
