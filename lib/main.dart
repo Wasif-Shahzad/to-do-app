@@ -17,6 +17,10 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.yellow,
           foregroundColor: Colors.black,
         ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.yellow,
+          foregroundColor: Colors.black,
+        )
       ),
       home: const HomePage(),
     );
