@@ -68,6 +68,7 @@ class _SundayTasksState extends State<SundayTasks> {
       if(db.toDoList[day] != null){
         db.toDoList[day]!.removeAt(index);
       }
+      _controller.clear();
     });
     db.updateData();
   }

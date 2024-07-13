@@ -67,6 +67,7 @@ class _HomePageState extends State<HomePage> {
       if(db.toDoList[day] != null){
         db.toDoList[day]!.removeAt(index);
       }
+      _controller.clear();
     });
     db.updateData();
   }
@@ -165,6 +166,7 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.add),
         
       ),
+      
     );
   }
 }
