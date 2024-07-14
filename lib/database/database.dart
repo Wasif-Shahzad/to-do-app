@@ -35,7 +35,7 @@ class ToDoData {
     };
   }
 
-  void createInitiatDataCompletion(){
+  void createInitialDataCompletion(){
     isInitialTaskDone = [
       false, // monday
       false, // tuesday
@@ -65,7 +65,7 @@ class ToDoData {
       isInitialTaskDone = List<bool>.from(loadedInitialTaskCompletion);
     }
     else{
-      createInitiatDataCompletion();
+      createInitialDataCompletion();
     }
   }
 
