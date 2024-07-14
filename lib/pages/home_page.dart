@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
   ToDoData db = ToDoData();
   final String day = "monday";
-
+  final int dayIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -37,14 +37,18 @@ class _HomePageState extends State<HomePage> {
     });
     db.updateData();
   }
-
   void saveNewTask(){
     setState(() {
       if(db.toDoList[day] != null){
         db.toDoList[day]!.add([_controller.text, false]);
       }
+      if(db.isInitialTaskDone[dayIndex] == false && db.toDoList[day]!.length == 2 && db.toDoList[day]![0][0] == "Create a new task."){
+        db.isInitialTaskDone[dayIndex] = true;
+        db.toDoList[day]![0][1] = true;
+      }
       _controller.clear();
     });
+    // print(db.isInitialTaskDone[dayIndex]);
     Navigator.of(context).pop();
     db.updateData();
   }

@@ -13,6 +13,16 @@ class ToDoData {
     "sunday": [],
   };
 
+  List<bool> isInitialTaskDone = [
+    false, // monday
+    false, // tuesday
+    false, // wednesday
+    false, // thursday
+    false, // friday
+    false, // saturday
+    false, // sunday
+  ];
+
   void createInitialData(){
     toDoList = {
       "monday": [["Create a new task.", false]],
@@ -25,8 +35,21 @@ class ToDoData {
     };
   }
 
+  void createInitiatDataCompletion(){
+    isInitialTaskDone = [
+      false, // monday
+      false, // tuesday
+      false, // wednesday
+      false, // thursday
+      false, // friday
+      false, // saturday
+      false, // sunday
+    ];
+  }
+
   void loadData(){
     var loadedData = _myBox.get("TODOLIST");
+    var loadedInitialTaskCompletion = _myBox.get("INITIALTASKCOMPLETION");
     if(loadedData != null && loadedData is Map){
       toDoList = Map<String, List>.from(
         loadedData.map((key, value) => MapEntry(
@@ -38,9 +61,16 @@ class ToDoData {
     else {
       createInitialData();
     }
+    if(loadedInitialTaskCompletion != null && loadedInitialTaskCompletion is List){
+      isInitialTaskDone = List<bool>.from(loadedInitialTaskCompletion);
+    }
+    else{
+      createInitiatDataCompletion();
+    }
   }
 
   void updateData(){
     _myBox.put("TODOLIST", toDoList);
+    _myBox.put("INITIALTASKCOMPLETION", isInitialTaskDone);
   }
 }

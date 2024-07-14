@@ -17,7 +17,7 @@ class _SaturdayTasksState extends State<SaturdayTasks> {
   final _controller = TextEditingController();
   ToDoData db = ToDoData();
   final String day = "saturday";
-
+  final int dayIndex = 5;
   @override
   void initState() {
     // TODO: implement initState
@@ -44,8 +44,13 @@ class _SaturdayTasksState extends State<SaturdayTasks> {
       if(db.toDoList[day] != null){
         db.toDoList[day]!.add([_controller.text, false]);
       }
+      if(db.isInitialTaskDone[dayIndex] == false && db.toDoList[day]!.length == 2 && db.toDoList[day]![0][0] == "Create a new task."){
+        db.isInitialTaskDone[dayIndex] = true;
+        db.toDoList[day]![0][1] = true;
+      }
       _controller.clear();
     });
+    // print(db.isInitialTaskDone[dayIndex]);
     Navigator.of(context).pop();
     db.updateData();
   }
